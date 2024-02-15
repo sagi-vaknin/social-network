@@ -25,8 +25,9 @@ This project is a social media website built with Python, Flask, SQLAlchemy, SQL
   This file contains tables representing users, friendships, and posts, along with their associated data.
 
 ### Demo
-https://github.com/sagi-vaknin/social-network/blob/16fac44a82353542ad94c97829e4971e08c5e0a4/demo.mp4
-  
+https://github.com/sagi-vaknin/social-network/assets/123668270/3c3e8c5f-017e-4e25-8d51-3a1d02347bab
+
+
 ### Built With
 * Python
 * Flask
