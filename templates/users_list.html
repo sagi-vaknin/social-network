@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="vertical-nav">
+            <ul>
+                <li><a href="{{ url_for('home_page') }}">Home</a></li>
+                <li><a href="{{ url_for('profile', username=c_user.username) }}">Profile</a></li>
+                <li><a href="{{ url_for('friends_list', username = c_user.username) }}">My Friends</a></li>
+                <li><a href="{{ url_for('users_list')}}">Explore</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="profile-container"> 
+        
+        <div class="post-content">
+            <h3>Explore</h3>
+            <div class="post-container">
+                {% for post in posts %}
+                    <div class="post">
+                        <a href="{{ url_for('profile', username=post.username) }}">
+                        <p><strong>{{ post.username }}</strong>: {{ post.content }}</p>
+                        <p class="smaller-text">Posted at: {{ post.created_at }}</p>
+                    </a>
+                    </div>
+                {% endfor %}
+                </div>
+        </div>
+            <a href="{{ url_for('profile', username = c_user.username) }}" class="show-users-button">Return</a>
+        </div>
+    </div>
+</body>
+</html>

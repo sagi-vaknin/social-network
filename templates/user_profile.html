@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+    <div class="vertical-nav">
+        <ul>
+            <li><a href="{{ url_for('home_page') }}">Home</a></li>
+            <li><a href="{{ url_for('profile', username = current_user.username) }}">Profile</a></li>
+            <li><a href="{{ url_for('friends_list', username = username) }}">My Friends</a></li>
+            <li><a href="{{ url_for('users_list')}}">Explore</a></li>
+            <li><a href="{{ url_for('logout') }}" class="logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="profile-container">
+        
+        <div class="profile-info">
+            <h1>{{ username }}'s profile</h1>
+            {% if current_user.username != username %}
+                {% if not current_user.is_friend_by_username(username) %}
+                    <form action="{{ url_for('add_friend', username=username) }}" method="post">
+                        <button type="submit" class="show-users-button">Add Friend</button>
+                    </form>
+                {% else %}
+                    <form action="{{ url_for('remove_friend', username=username) }}" method="post">
+                        <button type="submit" class="show-users-button">Remove Friend</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        
+        <div class="post-container">
+            <h2>Your Posts</h2>
+            {% for post in user_posts %}
+                <div class="post">
+                    <p>{{ post.content }}</p>
+                    <p class="smaller-text">Posted on: {{ post.created_at }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

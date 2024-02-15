@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>friends list</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"></head>
+<body>
+    <h1>{{ user.username }}'s Friends List</h1>
+    <div class="container"> 
+    <div class="vertical-nav">
+        <ul>
+            <li><a href="{{ url_for('home_page') }}">Home</a></li>
+            <li><a href="{{ url_for('profile', username = user.username) }}">Profile</a></li>
+            <li><a href="{{ url_for('friends_list', username = username) }}">My Friends</a></li>
+            <li><a href="{{ url_for('users_list')}}">Explore</a></li>
+            <li><a href="{{ url_for('logout') }}" class="logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="profile-container"> 
+    <ul class="user-list">
+        {% for friend in friends %}
+        <a href="{{ url_for('profile', username=friend.username) }}">
+            <li>{{ friend.username }}
+            </a>
+                <form action="{{ url_for('friends_list') }}" method="POST">
+                    <input type="hidden" name="username" value="{{ friend.username }}">
+                    <button type="submit" class="show-users-button">Remove Friend</button>
+                </form></li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+              
+        <div class="vertical-nav">
+            <ul>
+                <li><a href="{{ url_for('home_page') }}">Home</a></li>
+                <li><a href="{{ url_for('profile', username = username) }}">Profile</a></li>
+                <li><a href="{{ url_for('friends_list', username = username) }}">My Friends</a></li>
+                <li><a href="{{ url_for('users_list')}}">Explore</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">Logout</a></li>
+            </ul>
+        </div>
+        
+        <div class="profile-container">
+            <div class="profile-info">
+                <h1>Home Page</h1>
+            </div>
+
+        <div class="new-post-form">
+            <form action="{{ url_for('add_post') }}" method="post">
+                <textarea name="post_content" placeholder="Write your post here"></textarea>
+                <br>
+                <button type="submit">Add Post</button>
+            </form>
+        </div>
+    
+            <div class="post-container">
+                {% for post in posts %}
+                    <div class="post">
+                        <p><strong>{{ post.username }}</strong>: {{ post.content }}</p>
+                        <p class="smaller-text">Posted at: {{ post.created_at }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

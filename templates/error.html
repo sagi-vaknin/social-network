@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .error-message {
+            margin-top: 50px;
+            font-size: 20px;
+            color: black;
+        }
+        .return-button {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+
+        }
+        .return-button:hover {
+            background-color: #0056b3;
+        }
+        .container {
+        flex-grow: 1;
+        margin: 0 auto;
+        max-width: 600px; 
+        background-color: #fff; 
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container"> 
+    <div class="error-message">
+        <p>An error occurred: <br> {{ error }}</p>
+    </div>
+    <a href="{{ return_url }}" class="return-button">Return</a>
+</div>
+</body>
+</html>
